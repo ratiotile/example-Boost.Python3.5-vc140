@@ -1,0 +1,6 @@
+*.suo
+*.user
+Debug/
+*.db
+*.opendb
+*/Debug/
