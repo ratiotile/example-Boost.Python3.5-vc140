@@ -9,7 +9,9 @@ In this case we are looking for `boost_python3-vc140-mt-gd-1_55.lib` which is ac
 decoding boost names
 --------------------
 vc140 - compiler
+
 mt - multithreading
+
 gd - runtime debugging and debug symbols
 
 Common Problems
@@ -23,16 +25,16 @@ You should have python.exe in C:\Python35 and 2to3.py in C:\Python35\Tools\Scrip
 
 Create a batch file called 2to3.bat in C:\Python35 and put this line in the batch file
 
-python %~dp0Tools\Scripts\2to3.py %*
+    python %~dp0Tools\Scripts\2to3.py %*
 
 VS wants to use vc120 instead of vc140
 --------------------------------------
-get the error LNK1104: cannot open file 'boost-python-vc120-mt-1_55.lib' in visual studio 2015 (vc140), and the project compiler is set to the v140?
+get the error `LNK1104: cannot open file 'boost-python-vc120-mt-1_55.lib'` in visual studio 2015 (vc140), and the project compiler is set to v140?
 
-Boost 1.55 is too old to know about v140, so you need to edit boost/config/auto_link.hpp:
+Boost 1.55 is too old to know about v140, so you need to edit `boost/config/auto_link.hpp`:
 
-#  elif defined(BOOST_MSVC) && (BOOST_MSVC < 1900)
-#    define BOOST_LIB_TOOLSET "vc120"
+    #  elif defined(BOOST_MSVC) && (BOOST_MSVC < 1900)
+    #    define BOOST_LIB_TOOLSET "vc120"
 
-#  elif defined(BOOST_MSVC)
-#    define BOOST_LIB_TOOLSET "vc140"
+    #  elif defined(BOOST_MSVC)
+    #    define BOOST_LIB_TOOLSET "vc140"
